@@ -1,7 +1,7 @@
 
 ## React App Using AWS Amplify
 
-POC to understand how to work with AWS Managed GraphQL service i.e., AWS AppSync
+POC to understand how to work with AWS Managed GraphQL service i.e., [AWS AppSync](https://aws.amazon.com/appsync/)
 
 This project has been bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [AWS Amplify](https://aws.amazon.com/amplify/)
 
