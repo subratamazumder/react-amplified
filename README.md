@@ -7,6 +7,24 @@ This project has been bootstrapped with [Create React App](https://github.com/fa
 
 Detail instruction can be found here on [AWS Amplify Docs](https://docs.amplify.aws/start/getting-started/setup/q/integration/react)
 
+## Demo
+### Run Demo
+- `npm start` (to test with local mock `amplify mock api` first )
+### Add a new ToDo
+
+![AddTodo](doc/add-todo.png)
+
+### View All ToDo(s)
+
+![ViewTodo](doc/view-todo.png)
+
+### GraphQL ToDo API
+
+![GraphQLAPI](doc/graphql-api.png)
+
+### DynampDB ToDo Table
+
+![DynamoDB](doc/dynamo-table.png)
 ## Available Scripts
 
 In the project directory, you can run:
