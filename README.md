@@ -7,24 +7,84 @@ This project has been bootstrapped with [Create React App](https://github.com/fa
 
 Detail instruction can be found here on [AWS Amplify Docs](https://docs.amplify.aws/start/getting-started/setup/q/integration/react)
 
+## Output of Key Setup Steps
+### Add API
+![AddTodo](doc/cli-add-api.png)
+### Add Auth
+![AddTodo](doc/cli-add-auth.png)
+### Add Hosting
+![AddTodo](doc/cli-add-hosting.png)
 ## Demo
 ### Run Demo
+#### In Local (without auth)
 - `npm start` (to test with local mock `amplify mock api` first )
-### Add a new ToDo
+
+
+##### Add a new ToDo
 
 ![AddTodo](doc/add-todo.png)
 
-### View All ToDo(s)
+##### View All ToDo(s)
 
 ![ViewTodo](doc/view-todo.png)
 
-### GraphQL ToDo API
+##### GraphQL ToDo API
 
 ![GraphQLAPI](doc/graphql-api.png)
 
-### DynampDB ToDo Table
+##### DynampDB ToDo Table
 
 ![DynamoDB](doc/dynamo-table.png)
+
+### Via S3 Website
+- `amplify add auth` (ignore if alredy done)
+- `amplify add hosting` (ignore if alredy done)
+- `amplify publish`
+- `npm install -g serve && serve -s build` (to test local with build version) 
+
+##### Sign In Page
+
+![AddTodo](doc/sign-in-empty.png)
+
+##### Create New Account Page
+
+![AddTodo](doc/create-new-account.png)
+
+##### Verification code to complete registration
+
+![AddTodo](doc/verification-code.png)
+
+##### New User Created in Cognito
+
+![AddTodo](doc/cognito-pool.png)
+
+##### Sign with new user
+
+![AddTodo](doc/sign-in.png)
+
+##### Secure Home Page
+
+![AddTodo](doc/secure-home-page.png)
+
+## Issues faced
+
+After adding hosting by `amplify add hosting` when `amplify publish` was run below error occured
+```
+npm WARN build `npm build` called with no arguments. Did you mean to `npm run-script build`?
+frontend build command exited with code 0
+Publish started for S3AndCloudFront
+
+Cannot find the distribution folder.
+Distribution folder is currently set as:
+  /Users/subratamazumder/workspace/react-amplified/build
+
+Cannot find the distribution folder.
+Error: Cannot find the distribution folder.
+    at Object.scan (/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-hosting/lib/S3AndCloudFront/helpers/file-scanner.js:38:11)
+```
+
+This seems to be a bug, fix is to run `npm run build` to create missing `build` directory.
+I have raise this as a [bug](https://github.com/aws-amplify/amplify-cli/issues/5363). 
 ## Available Scripts
 
 In the project directory, you can run:
