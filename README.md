@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## React App Using AWS Amplify
+
+Detail instruction can be found here on [AWS Amplify Docs] (https://docs.amplify.aws/start/getting-started/setup/q/integration/react)
+
 ## Available Scripts
 
 In the project directory, you can run:
