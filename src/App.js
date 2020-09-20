@@ -1,10 +1,11 @@
 /* src/App.js */
 import React, { useEffect, useState } from 'react'
-import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import Amplify, { API, graphqlOperation, Analytics } from 'aws-amplify'
 import { createTodo } from './graphql/mutations'
 import { listTodos } from './graphql/queries'
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "./aws-exports";
+
 Amplify.configure(awsExports);
 
 const initialState = { name: '', description: '' }
@@ -26,7 +27,10 @@ const App = () => {
       const todoData = await API.graphql(graphqlOperation(listTodos))
       const todos = todoData.data.listTodos.items
       setTodos(todos)
-    } catch (err) { console.log('error fetching todos') }
+      Analytics.record({ name: 'ToDo Fetched' });
+    } catch (err) { 
+      Analytics.record({ name: 'ToDo Fetch Failed' });
+      console.log('error fetching todos') }
   }
 
   async function addTodo() {
@@ -36,14 +40,16 @@ const App = () => {
       setTodos([...todos, todo])
       setFormState(initialState)
       await API.graphql(graphqlOperation(createTodo, {input: todo}))
+      Analytics.record({ name: 'ToDo Added' });
     } catch (err) {
+      Analytics.record({ name: 'ToDo Add Failed' });
       console.log('error creating todo:', err)
     }
   }
 
   return (
     <div style={styles.container}>
-      <h2>Amplify Todos</h2>
+      <h2 style={styles.appTitle}>ToDo App</h2>
       <input
         onChange={event => setInput('name', event.target.value)}
         style={styles.input}
@@ -56,7 +62,8 @@ const App = () => {
         value={formState.description}
         placeholder="Description"
       />
-      <button style={styles.button} onClick={addTodo}>Create Todo</button>
+      <button style={styles.button} onClick={addTodo}>Add Todo</button>
+      <h3>Powered by React + Amplify + AppSync</h3>
       {
         todos.map((todo, index) => (
           <div key={todo.id ? todo.id : index} style={styles.todo}>
@@ -71,6 +78,7 @@ const App = () => {
 
 const styles = {
   container: { width: 400, margin: '0 auto', display: 'flex', flex: 1, flexDirection: 'column', justifyContent: 'center', padding: 20 },
+  appTitle: {  align: 'center',fontSize: 30, fontWeight: 'bold' },
   todo: {  marginBottom: 15 },
   input: { border: 'none', backgroundColor: '#ddd', marginBottom: 10, padding: 8, fontSize: 18 },
   todoName: { fontSize: 20, fontWeight: 'bold' },
