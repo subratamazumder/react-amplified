@@ -30,5 +30,11 @@
       "service": "S3AndCloudFront",
       "providerPlugin": "awscloudformation"
     }
+  },
+  "analytics": {
+    "ReactToDoApp": {
+      "service": "Pinpoint",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }
