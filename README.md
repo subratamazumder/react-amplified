@@ -15,6 +15,50 @@ Detail instruction can be found here on [AWS Amplify Docs](https://docs.amplify.
 ### Add Hosting
 ![AddTodo](doc/cli-add-hosting.png)
 ## Demo
+### Test GraphQL Todo API
+```console
+curl -i -X POST -H "Content-Type: application/json" \
+-H "x-api-key: ******<replace-with-urs>******" \
+    -d '{
+	"query": "query listTodos { listTodos {   items {     id    description   name }  }}",
+	"variables": null,
+	"operationName": "listTodos"
+}' \
+    https://****<replace-with-urs>****.appsync-api.us-east-1.amazonaws.com/graphql
+```
+
+```console
+HTTP/2 200
+content-type: application/json;charset=UTF-8
+content-length: 385
+date: Sun, 20 Sep 2020 12:59:55 GMT
+x-amzn-requestid: a04ba281-f73c-4cef-ba99-14de24a50e01
+x-amzn-trace-id: Root=1-5f67524a-9ef51196a9bdbebaebedf99a
+x-cache: Miss from cloudfront
+via: 1.1 15397caaa3c9e02a2f3a5395f6725740.cloudfront.net (CloudFront)
+x-amz-cf-pop: BLR50-C3
+x-amz-cf-id: jH5FRFQhMuh6g-OnV0dc35uW4aJow0nRj_YrQ01VmY8lbknjfnwgmA==
+
+{
+	"data": {
+		"listTodos": {
+			"items": [{
+				"id": "5067cb64-0308-4b8c-b845-f349f45a497d",
+				"description": "It's time to go to bed",
+				"name": "Sleep Now"
+			}, {
+				"id": "373db66d-f9e4-4a5b-8673-efce9e2c21a8",
+				"description": "Cognito needs to be configured",
+				"name": "Add Auth module"
+			}, {
+				"id": "692c3f04-0428-4712-b9b7-7e1899224765",
+				"description": "Build a serverless API with Amplify and GraphQL",
+				"name": "Learn AWS"
+			}]
+		}
+	}
+}
+```
 ### Run Demo
 #### In Local (without auth)
 - `npm start` (to test with local mock `amplify mock api` first )
