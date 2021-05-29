@@ -1,6 +1,6 @@
 {
     "identityPoolName": "reactamplified189464cd_identitypool_189464cd",
-    "allowUnauthenticatedIdentities": true,
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "reacta189464cd",
     "userPoolName": "reactamplified189464cd_userpool_189464cd",
     "autoVerifiedAttributes": [
