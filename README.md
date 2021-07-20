@@ -1,4 +1,4 @@
-
+![GitHub](https://img.shields.io/github/license/subratamazumder/react-amplified?style=for-the-badge)
 ## React App Using AWS Amplify
 
 POC to understand how to work with AWS Managed GraphQL service i.e., [AWS AppSync](https://aws.amazon.com/appsync/)
